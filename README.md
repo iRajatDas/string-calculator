@@ -36,6 +36,7 @@ Welcome to the **String Calculator** project!
 - **Frontend**: React with TypeScript
 - **Styling**: Tailwind CSS
 - **Build Tool**: Vite
+- **Testing**: Vitest
 - **Deployment**: Vercel/Netlify (link provided above)
 
 ---
@@ -80,3 +81,15 @@ The `add` function handles the following cases:
    ```bash
    pnpm dev
    ```
+
+The application should now be running on [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 🧪 Testing
+
+The project uses Vitest for testing. To run the tests, use the following command:
+
+```bash
+pnpm test
+```
