@@ -15,8 +15,10 @@ const StringCalculator = () => {
       // since empty values are allowed, skip validation for now
 
       const evaluatedResult = add(input);
+      console.log({ evaluatedResult });
       setResult(evaluatedResult);
-    } catch {
+    } catch (err) {
+      console.log(err);
       setError("Invalid expression");
     }
   };
@@ -29,22 +31,31 @@ const StringCalculator = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-2xl font-bold max-md:text-center mb-6">
-          String Calculator
-        </h1>
+      <div className="w-full max-w-md bg-white rounded-lg border p-4 md:p-6">
+        <header className="mb-6">
+          <h1 className="text-2xl font-bold max-md:text-center mb-2">
+            String Calculator
+          </h1>
+          <p className="mb-2 text-zinc-600 text-sm">
+            Enter a comma separated string of numbers to calculate the sum. Or
+            use custom delimiters by specifying them in the format:
+          </p>
+          <code className="text-xs">
+            <pre>{`"//[delimiter]\\n[numbers...]".`}</pre>
+          </code>
+        </header>
 
         {/* Input Field */}
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter your expression (e.g., 5+3*2)"
-          className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500 mb-4"
+          placeholder="Enter numbers here..."
+          className="w-full p-3 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 mb-4"
         />
 
         {/* Buttons */}
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between gap-4 text-sm">
           <button
             onClick={handleCalculate}
             className="w-full py-2 bg-rose-500 text-white font-medium rounded-md hover:bg-rose-600 transition"
@@ -59,8 +70,12 @@ const StringCalculator = () => {
           </button>
         </div>
 
-        {/* Result */}
-        {result ? (
+        {/* -- Result */}
+
+        {/* Checking type of result,
+            since result with value `zero`, will be treated as a falsy value
+         */}
+        {typeof result === "number" ? (
           <div className="mt-6 p-4 bg-gray-50 rounded-md border">
             <h2 className="text-lg font-medium mb-2">Result:</h2>
             <p className="text-xl font-bold text-rose-600">{result}</p>

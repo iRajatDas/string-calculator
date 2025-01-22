@@ -19,13 +19,12 @@
  * add("-1,2,-3"); // Throws Error: "negative numbers not allowed -1,-3"
  */
 function add(numbers: string): number {
-  // Check if numbers is defined
-  if (!numbers) return 0;
+  // Check if numbers is defined or is empty
+  if (typeof numbers === "undefined" || numbers === "") return 0;
 
   // case:split by comma
   const numArr = numbers.split(",").map(Number);
 
-  console.log(numArr);
   return numArr.reduce((acc, cur) => acc + cur, 0);
 }
 
