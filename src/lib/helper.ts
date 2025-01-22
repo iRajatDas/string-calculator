@@ -19,13 +19,20 @@
  * add("-1,2,-3"); // Throws Error: "negative numbers not allowed -1,-3"
  */
 function add(numbers: string): number {
-  // Check if numbers is defined or is empty
-  if (typeof numbers === "undefined" || numbers === "") return 0;
+  if (!numbers || numbers === "") return 0;
 
-  // case:split by comma
-  const numArr = numbers.split(",").map(Number);
+  // Custom delimiter
+  let delimiter = /,|\n/;
+  if (numbers.startsWith("//")) {
+    const [del, nums] = numbers.split("\\n");
+    delimiter = new RegExp(del.slice(2));
+    console.log(nums);
+    numbers = nums;
+  }
 
-  return numArr.reduce((acc, cur) => acc + cur, 0);
+  const numArray = numbers.split(delimiter).map(Number);
+
+  return numArray.reduce((sum, num) => (isNaN(sum + num) ? 0 : sum + num), 0);
 }
 
 export { add };
