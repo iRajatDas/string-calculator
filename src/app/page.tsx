@@ -14,7 +14,7 @@ const HomePage = () => {
             use custom delimiters by specifying them in the format:
           </p>
           <code className="text-xs">
-            <pre>{`"//[delimiter]\\n[numbers...]".`}</pre>
+            <pre>{`"//[delimiter]\\n[numbers...]"`}</pre>
           </code>
         </header>
 

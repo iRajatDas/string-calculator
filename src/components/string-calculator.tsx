@@ -21,7 +21,8 @@ const StringCalculator = () => {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        console.log("An unknown error occurred");
+        console.error(err);
+        setError("An unknown error occurred");
       }
     }
   };
