@@ -15,8 +15,8 @@ const StringCalculator = () => {
       // since empty values are allowed, skip validation for now
 
       const evaluatedResult = add(input);
-      console.log({ evaluatedResult });
       setResult(evaluatedResult);
+      // console.log({ evaluatedResult });
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -50,12 +50,14 @@ const StringCalculator = () => {
 
         {/* Input Field */}
         <input
+          data-testid="fieldnumber"
           type="text"
           value={input}
           onChange={(e) => {
             setInput(e.target.value);
-            // reset error
+            // reset error or result when input changes
             setResult(null);
+            setError(null);
           }}
           placeholder="Enter numbers here..."
           className="w-full p-3 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 mb-4"

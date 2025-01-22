@@ -21,10 +21,12 @@
 function add(numbers: string): number {
   if (!numbers || numbers === "") return 0;
 
+  // console.log(numbers, "numbers");
   // Custom delimiter
   let delimiter = /,|\n/;
   if (numbers.startsWith("//")) {
-    const [del, nums] = numbers.split("\\n");
+    // Serialized numbers will have an extra slash
+    const [del, nums] = numbers.split(numbers.includes("\\n") ? "\\n" : "\n");
     delimiter = new RegExp(del.slice(2));
     console.log(nums);
     numbers = nums;
