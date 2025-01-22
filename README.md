@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# String Calculator with TDD and Frontend UI
 
-## Getting Started
+Welcome to the **String Calculator** project!
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **String Calculator Functionality**:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   - Handles comma-separated numbers and sums them up.
+   - Supports newlines as delimiters.
+   - Allows custom delimiters specified in the format: `//[delimiter]\n[numbers...]`.
+   - Throws an error for negative numbers and lists all negative values in the error message.
+   - Returns `0` for empty strings.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Frontend Interface**:
 
-## Learn More
+   - Input box for entering numbers or custom delimiter strings.
+   - Dynamic display of calculation results or error messages.
+   - Clear and Calculate buttons for user interaction.
+   - Responsive design using Tailwind CSS.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Modularity and Scalability**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Clean separation of concerns between logic (`add` function) and UI (`StringCalculator` component).
+   - Easily extendable for additional functionality or styling.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Deployed Application**:
+   - Live demo hosted [here](https://string-calculator-rajat.vercel.app/).
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend**: React with TypeScript
+- **Styling**: Tailwind CSS
+- **Build Tool**: Vite
+- **Deployment**: Vercel/Netlify (link provided above)
+
+---
+
+## 📚 How It Works
+
+### **Backend Functionality**
+
+The `add` function handles the following cases:
+
+- **Empty String**: Returns `0`.
+- **Single Number**: Returns the number itself.
+- **Multiple Numbers**: Returns their sum.
+- **Newline Delimiters**: Handles strings with numbers separated by commas or newlines (e.g., `"1\n2,3"`).
+- **Custom Delimiters**: Parses custom delimiters specified in the format `//[delimiter]\n[numbers...]` (e.g., `"//;\n1;2"`).
+- **Negative Numbers**: Throws an exception with a message listing all negative numbers.
+
+### **Frontend**
+
+- Input field for entering the string.
+- Buttons:
+  - `Calculate`: Triggers the `add` function and displays the result.
+  - `Clear`: Resets the input and result fields.
+- Dynamic error and result handling:
+  - Displays the sum for valid input.
+  - Displays an error message for invalid input or negative numbers.
+
+---
+
+## 📋 Steps to Run Locally
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/iRajatDas/string-calculator.git
+   cd string-calculator
+   ```
+2. **Install Dependencies**:
+   ```bash
+   pnpm install
+   ```
+3. **Run the Development Server**:
+   ```bash
+   pnpm dev
+   ```
