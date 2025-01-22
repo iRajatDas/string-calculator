@@ -32,6 +32,12 @@ function add(numbers: string): number {
 
   const numArray = numbers.split(delimiter).map(Number);
 
+  // Handle negatives
+  const negatives = numArray.filter((num) => num < 0);
+  if (negatives.length) {
+    throw new Error(`Negative numbers not allowed: ${negatives.join(", ")}`);
+  }
+
   return numArray.reduce((sum, num) => (isNaN(sum + num) ? 0 : sum + num), 0);
 }
 
