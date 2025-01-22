@@ -18,8 +18,11 @@ const StringCalculator = () => {
       console.log({ evaluatedResult });
       setResult(evaluatedResult);
     } catch (err) {
-      console.log(err);
-      setError("Invalid expression");
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        console.log("An unknown error occurred");
+      }
     }
   };
 
@@ -49,7 +52,11 @@ const StringCalculator = () => {
         <input
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            // reset error
+            setResult(null);
+          }}
           placeholder="Enter numbers here..."
           className="w-full p-3 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 mb-4"
         />
@@ -75,17 +82,15 @@ const StringCalculator = () => {
         {/* Checking type of result,
             since result with value `zero`, will be treated as a falsy value
          */}
-        {typeof result === "number" ? (
+        {!error && typeof result === "number" ? (
           <div className="mt-6 p-4 bg-gray-50 rounded-md border">
             <h2 className="text-lg font-medium mb-2">Result:</h2>
             <p className="text-xl font-bold text-rose-600">{result}</p>
           </div>
-        ) : null}
-
-        {/* Error Msg */}
-        {error ? (
+        ) : (
+          // Error msg
           <p className="mt-4 text-red-600 text-sm font-medium">{error}</p>
-        ) : null}
+        )}
       </div>
     </div>
   );
