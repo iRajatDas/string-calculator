@@ -69,7 +69,7 @@ const StringCalculator = () => {
       <div
         className={
           // Hide the result section if there's no result or error
-          !result && !error ? "hidden" : "mt-6"
+          result === null && !error ? "hidden" : "mt-6"
         }
       >
         {error ? (
